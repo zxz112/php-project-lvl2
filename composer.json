@@ -1,0 +1,19 @@
+{
+    "name": "ilya/php-project-lvl2",
+    "description": "hexlet project 2",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ilya VVV",
+            "email": "Ilya@mail.ru"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/diff.php"
+          ]
+    },
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
