@@ -10,8 +10,8 @@ class DiffTest extends TestCase
 {
     public function testDiff()
     {
-        $after = './after.json';
-        $before = './before.json';
+        $after = 'tests/fixtures/after.json';
+        $before = 'tests/fixtures/before.json';
         $expected = '{
 + timeout: 50
 - timeout: 20
