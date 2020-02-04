@@ -15,5 +15,11 @@
     },
     "require": {
         "docopt/docopt": "^1.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    },
+    "scripts": {
+        "phpcs" : "phpcs"
     }
 }

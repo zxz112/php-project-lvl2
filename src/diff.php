@@ -1,33 +1,29 @@
 <?php
+
 namespace genDiff\diff;
 
-function diff($before1, $after1)
+function diff($firstFile, $secondFile)
 {
-    $before = json_decode(file_get_contents($before1));
-    $after = json_decode(file_get_contents($after1));
-
-    $result = [];
-    foreach($before as $key1 => $value1) {
+    $before = json_decode(file_get_contents($firstFile));
+    $after = json_decode(file_get_contents($secondFile));
+    $diff = [];
+    foreach ($before as $key1 => $value1) {
         foreach ($after as $key2 => $value2) {
-            if($key1 == $key2 && $value1 == $value2)
-                {
-                    $result[$key1] = $value1;
-                }
-            elseif($key1 == $key2 && $value1 != $value2) {
-                $result["+".$key1] = $value2;
-                $result["-".$key1] = $value1;
-            }
-            elseif(!array_key_exists($key2, $before)) {
-                $result["+".$key2] = $value2;
-            }
-            elseif(!array_key_exists($key1, $after)) {
-                $result["-".$key1] = $value1;
+            if ($key1 == $key2 && $value1 == $value2) {
+                $diff["  " . $key1] = $value1;
+            } elseif ($key1 == $key2 && $value1 != $value2) {
+                $diff["+ " . $key1] = $value2;
+                $diff["- " . $key1] = $value1;
+            } elseif (!array_key_exists($key2, $before)) {
+                $diff["- " . $key2] = $value2;
+            } elseif (!array_key_exists($key1, $after)) {
+                $diff["+ " . $key1] = $value1;
             }
         }
     }
-    foreach($result as $key => $value) {
-        echo "$key:$value".PHP_EOL;
+    $result = '';
+    foreach ($diff as $key => $value) {
+        $result = "{$result}{$key}: {$value}" . PHP_EOL;
     }
+    return "{" . PHP_EOL . "{$result}}";
 }
-
-// print_r(json_encode(diff($before, $after)));

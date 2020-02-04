@@ -1,2 +1,2 @@
 start:
-	php -S localhost:8080 -t src src/diff.php
+	composer run-script phpcs -- --standard=PSR12 src bin
