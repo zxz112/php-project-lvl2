@@ -17,9 +17,11 @@
         "docopt/docopt": "^1.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "phpunit/phpunit": "^8.5"
     },
     "scripts": {
-        "phpcs" : "phpcs"
+        "phpcs" : "phpcs",
+	"phpunit": "phpunit"
     }
 }
