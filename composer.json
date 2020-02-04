@@ -2,6 +2,9 @@
     "name": "ilyavvv/php-project-lvl2",
     "description": "hexlet project 2",
     "type": "project",
+    "bin": [
+	"bin/gendiff"
+      	],
     "authors": [
         {
             "name": "Ilya VVV",
