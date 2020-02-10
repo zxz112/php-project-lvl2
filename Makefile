@@ -4,3 +4,5 @@ lint:
 	composer run-script phpcs -- --standard=PSR12 src bin
 test:
 	composer run-script phpunit tests
+error:
+	composer run-script phpcbf src bin

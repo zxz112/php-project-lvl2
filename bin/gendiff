@@ -9,6 +9,7 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function genDiff\diff\diff;
+use function genDiff\reduce\diffre;
 $doc = <<<DOC
 Generate diff
 
@@ -25,7 +26,8 @@ Options:
 DOC;
 
 $args = Docopt::handle($doc, array('version'=>'Gendiff'));
-$result = diff($args['<firstFile>'], $args['<secondFile>']);
+$result = diff($args['<firstFile>'], $args['<secondFile>'], 'pretty');
 echo($result);
+
 
 

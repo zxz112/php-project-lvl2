@@ -13,11 +13,18 @@
     ],
     "autoload": {
         "files": [
-            "src/diff.php"
-          ]
+            "src/diff.php",
+	        "src/parse.php",
+	        "src/isbool.php",
+            "src/Formattes/pretty.php",
+            "src/makeDiff.php"
+            ]
     },
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^5.0",
+        "funct/funct": "^1.5",
+        "tightenco/collect": "^6.14"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
@@ -25,6 +32,7 @@
     },
     "scripts": {
         "phpcs" : "phpcs",
-	"phpunit": "phpunit"
+        "phpcbf" : "phpcbf",
+	    "phpunit": "phpunit"
     }
 }

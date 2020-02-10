@@ -2,28 +2,22 @@
 
 namespace genDiff\diff;
 
-function diff($firstFile, $secondFile)
+use function genDiff\parse\parse;
+use function genDiff\isbool\isBool;
+use function genDiff\pretty\pretty;
+use function genDiff\makeDiff\makeDiff;
+use function Funct\Collection\union;
+use function genDiff\plain\plain;
+
+function diff($firstFile, $secondFile, $format)
 {
-    $before = json_decode(file_get_contents($firstFile));
-    $after = json_decode(file_get_contents($secondFile));
-    $diff = [];
-    foreach ($before as $key1 => $value1) {
-        foreach ($after as $key2 => $value2) {
-            if ($key1 == $key2 && $value1 == $value2) {
-                $diff["  " . $key1] = $value1;
-            } elseif ($key1 == $key2 && $value1 != $value2) {
-                $diff["+ " . $key1] = $value2;
-                $diff["- " . $key1] = $value1;
-            } elseif (!array_key_exists($key2, $before)) {
-                $diff["- " . $key2] = $value2;
-            } elseif (!array_key_exists($key1, $after)) {
-                $diff["+ " . $key1] = $value1;
-            }
-        }
+    $before = parse(file_get_contents($firstFile), $firstFile);
+    $after = parse(file_get_contents($secondFile), $secondFile);
+    if ($format == 'pretty') {
+        $result = pretty(makeDiff($before, $after));
+        return "{\n{$result}\n}";
     }
-    $result = '';
-    foreach ($diff as $key => $value) {
-        $result = "{$result}{$key}: {$value}" . PHP_EOL;
+    if ($format == 'plain') {
+        return plain(makeDiff($before, $after));
     }
-    return "{" . PHP_EOL . "{$result}}";
 }
