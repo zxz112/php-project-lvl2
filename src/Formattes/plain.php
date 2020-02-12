@@ -17,7 +17,8 @@ function plain($diff, $parent = '')
         }
         if ($value['type'] == 'changed') {
             $temp = ltrim("{$parent}.{$value['key']}", ".");
-            $acc [] = "Property '{$temp}' was changed. From: '" . arrayToStr($value['oldValue']) . "' to '" . arrayToStr($value['newValue']) . "'";
+            $acc [] = "Property '{$temp}' was changed. From: '" . arrayToStr($value['oldValue']) . "' to '"
+             . arrayToStr($value['newValue']) . "'";
         }
         if ($value['type'] == 'parent') {
             $acc [] = plain($value['children'], "{$parent}.{$value['key']}");

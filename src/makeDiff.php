@@ -25,7 +25,8 @@ function valueDiff($key, $before, $after)
         return ['type' => 'deleted', 'key' => $key, 'value' => $before[$key]];
     }
     if (is_array($before[$key]) && is_array($after[$key])) {
-        return ['type' => 'parent', 'key' => $key, 'value' => $before[$key], 'children' => makeDiff($before[$key], $after[$key])];
+        return ['type' => 'parent', 'key' => $key, 'value' => $before[$key],
+        'children' => makeDiff($before[$key], $after[$key])];
     }
     if ($before[$key] === $after[$key]) {
         return ['type' => 'not changed', 'key' => $key, 'value' => $before[$key]];
