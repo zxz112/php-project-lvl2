@@ -5,4 +5,4 @@ lint:
 test:
 	composer run-script phpunit tests
 error:
-	composer run-script phpcbf src bin
+	composer run-script phpcbf -- --standard=PSR12 src bin

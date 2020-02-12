@@ -4,21 +4,14 @@ namespace genDiff\makeDiff;
 
 use function Funct\Collection\union;
 
-$autoloadPath1 = __DIR__ . '/../../../autoload.php';
-$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
-if (file_exists($autoloadPath1)) {
-    include_once $autoloadPath1;
-} else {
-    include_once $autoloadPath2;
-}
-
 function makeDiff($before, $after)
 {
     $ourkeys = union(array_keys($before), array_keys($after));
     $diff = array_map(
         function ($key) use ($before, $after) {
             return valueDiff($key, $before, $after);
-        }, $ourkeys
+        },
+        $ourkeys
     );
     return $diff;
 }

@@ -14,9 +14,11 @@
     "autoload": {
         "files": [
             "src/diff.php",
-	        "src/parse.php",
-	        "src/isbool.php",
+	    "src/parse.php",
+	    "src/inbool.php",
             "src/Formattes/pretty.php",
+            "src/Formattes/plain.php",
+	    "src/Formattes/json.php",
             "src/makeDiff.php"
             ]
     },

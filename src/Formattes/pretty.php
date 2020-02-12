@@ -2,9 +2,15 @@
 
 namespace genDiff\pretty;
 
-use function genDiff\isbool\isBool;
+use function genDiff\inbool\inBool;
 
-function pretty($diff, $space = 0)
+function pretty($pretty)
+{
+    $result = makePretty($pretty);
+    return "{\n{$result}\n}";
+}
+
+function makePretty($diff, $space = 0)
 {
     $spaces = str_repeat('    ', $space);
     $result = array_reduce($diff, function ($acc, $value) use ($spaces, $space) {
@@ -27,7 +33,7 @@ function pretty($diff, $space = 0)
             $acc [] = "{$spaces}  + {$value['key']}: {$valNew}";
         }
         if ($value['type'] == 'parent') {
-            $child = pretty($value['children'], $space + 1);
+            $child = makePretty($value['children'], $space + 1);
             $acc [] = "{$spaces}    {$value['key']}: {" . PHP_EOL . "{$child}\n    {$spaces}}";
         }
         return $acc;
@@ -40,11 +46,11 @@ function strBuild($value, $space)
     if (is_array($value)) {
         $keys = array_keys($value);
         $values = array_reduce($keys, function ($acc, $val) use ($value, $spaces) {
-            $acc[] = "{$spaces}    {$val}: " . isBool($value[$val]);
+            $acc[] = "{$spaces}    {$val}: " . inBool($value[$val]);
             return $acc;
         }, []);
         $result = implode(PHP_EOL, $values);
         return "{\n$result\n{$spaces}}";
     }
-    return isBool($value);
+    return inBool($value);
 }

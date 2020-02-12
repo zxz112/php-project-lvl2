@@ -35,4 +35,26 @@ class DiffTest extends TestCase
         $expected = substr(file_get_contents('tests/fixtures/expectedDiffTree'), 0, -1);
         $this->assertEquals($expected, diff($before, $after, 'pretty'));
     }
+    public function testPlain()
+    {
+        $before = 'tests/fixtures/before.json';
+        $after = 'tests/fixtures/after.json';
+        $expected = file_get_contents("tests/fixtures/expectedPlain");
+        $this->assertEquals($expected, diff($before, $after, 'plain'));
+
+    }
+    public function testPlainTree()
+    {
+        $before = 'tests/fixtures/beforeTree.json';
+        $after = 'tests/fixtures/afterTree.json';
+        $expected = file_get_contents("tests/fixtures/expectedTreePlain");
+        $this->assertEquals($expected, diff($before, $after, 'plain'));
+    }
+    public function testJson()
+    {
+        $before = 'tests/fixtures/before.json';
+        $after = 'tests/fixtures/after.json';
+        $expected = file_get_contents("tests/fixtures/expectedJson");
+        $this->assertEquals($expected, diff($before, $after, 'json'));
+    }
 }

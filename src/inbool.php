@@ -1,8 +1,8 @@
 <?php
 
-namespace genDiff\isbool;
+namespace genDiff\inbool;
 
-function isBool($value)
+function inBool($value)
 {
     if ($value === true) {
         return 'true';
