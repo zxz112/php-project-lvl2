@@ -3,21 +3,24 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/5130058adfa858d5d7ff/maintainability)](https://codeclimate.com/github/zxz112/php-project-lvl2/maintainability)
 
 
-###Utility to find difference between files.
+### Utility to find difference between files.
 Install:
   composer global require ilyavvv/php-project-lvl2
   
 Render types:
-   pretty
-   plain
-   json
+ * pretty
+ * plain
+ * json
   
 Data type:
-    json
-    yaml
+
+  * json
+  * yaml
   
 Example usage:
+
   $ gendiff --format plain before.json after.json
+  
     {
       - timeout: 20
       + timeout: 50
@@ -28,10 +31,10 @@ Example usage:
 
  $ gendiff --format plain before.json after.json
 
-   Property 'timeout' was changed. From: '20' to '50'
-   Property 'verbose' was removed
-   Property 'proxy' was added with value :'123.234.53.22'i
+     Property 'timeout' was changed. From: '20' to '50'
+     Property 'verbose' was removed
+     Property 'proxy' was added with value :'123.234.53.22'i
 
 $ gendiff --format json after.json before.json
-    [{"type":"changed","key":"timeout","oldValue":20,"newValue":50},{"type":"deleted","key":"verbose","value":true},  {"type":"not changed","key":"host","value":"hexlet.io"},{"type":"added","key":"proxy","value":"123.234.53.22"}]
- 
+
+    [{"type":"changed","key":"timeout","oldValue":20,"newValue":50},{"type":"deleted","key":"verbose","value":true},    {"type":"not changed","key":"host","value":"hexlet.io"},{"type":"added","key":"proxy","value":"123.234.53.22"}]
