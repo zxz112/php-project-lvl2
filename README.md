@@ -37,4 +37,4 @@ Example usage:
 
 $ gendiff --format json after.json before.json
 
-    [{"type":"changed","key":"timeout","oldValue":20,"newValue":50},{"type":"deleted","key":"verbose","value":true},    {"type":"not changed","key":"host","value":"hexlet.io"},{"type":"added","key":"proxy","value":"123.234.53.22"}]
+    [{"type":"not changed","key":"host","value":"hexlet.io"},{"type":"changed","key":"timeout","oldValue":50,"newValue":20},{"type":"deleted","key":"proxy","value":"123.234.53.22"},{"type":"added","key":"verbose","value":true}]
