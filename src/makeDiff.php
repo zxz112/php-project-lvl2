@@ -7,10 +7,9 @@ use function Funct\Collection\union;
 function makeDiff($beforeData, $afterData)
 {
     $ourkeys = union(array_keys($beforeData), array_keys($afterData));
-    $diff = array_map(
-        function ($key) use ($beforeData, $afterData) {
-            return valueDiff($key, $beforeData, $afterData);
-        },$ourkeys);
+    $diff = array_map(function ($key) use ($beforeData, $afterData) {
+        return valueDiff($key, $beforeData, $afterData);
+    }, $ourkeys);
     return $diff;
 }
 function valueDiff($key, $before, $after)
