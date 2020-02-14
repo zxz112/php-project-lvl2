@@ -3,7 +3,7 @@
     "description": "hexlet project 2",
     "type": "project",
     "bin": [
-	"bin/gendiff"
+	    "bin/gendiff"
       	],
     "authors": [
         {
@@ -14,11 +14,11 @@
     "autoload": {
         "files": [
             "src/diff.php",
-	    "src/parse.php",
-	    "src/inbool.php",
+	        "src/parser.php",
+	        "src/inbool.php",
             "src/Formattes/pretty.php",
             "src/Formattes/plain.php",
-	    "src/Formattes/json.php",
+	        "src/Formattes/json.php",
             "src/makeDiff.php"
             ]
     },

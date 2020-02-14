@@ -4,57 +4,26 @@ namespace App\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function genDiff\diff\diff;
+use function genDiff\diff\genDiff;
 
 class DiffTest extends TestCase
 {
-    // public function testJson()
-    // {
-    //     $after = 'tests/fixtures/after.json';
-    //     $before = 'tests/fixtures/before.json';
-    //     $this->assertEquals($expected, diff($after, $before, 'pretty'));
-    // }
-    public function testDiff()
+/**
+ * @dataProvider provider
+ */
+    public function testDiff($expected, $beforeFile, $afterFile, $format)
     {
-        $before = 'tests/fixtures/before.json';
-        $after = 'tests/fixtures/after.json';
-        $expected = substr(file_get_contents("tests/fixtures/expectedDiff"), 0, -1);
-        $this->assertEquals($expected, diff($before, $after, 'pretty'));
+        $expected = trim(file_get_contents($expected));
+        $this->assertSame($expected, genDiff($beforeFile, $afterFile, $format));
     }
-    public function testDiffYaml()
+    public function provider()
     {
-        $before = 'tests/fixtures/before.yaml';
-        $after = 'tests/fixtures/after.yaml';
-        $expected = substr(file_get_contents("tests/fixtures/expectedDiff"), 0, -1);
-        $this->assertEquals($expected, diff($before, $after, 'pretty'));
-    }
-    public function testTreeDiff()
-    {
-        $before = 'tests/fixtures/beforeTree.json';
-        $after = 'tests/fixtures/afterTree.json';
-        $expected = substr(file_get_contents('tests/fixtures/expectedDiffTree'), 0, -1);
-        $this->assertEquals($expected, diff($before, $after, 'pretty'));
-    }
-    public function testPlain()
-    {
-        $before = 'tests/fixtures/before.json';
-        $after = 'tests/fixtures/after.json';
-        $expected = file_get_contents("tests/fixtures/expectedPlain");
-        $this->assertEquals($expected, diff($before, $after, 'plain'));
-
-    }
-    public function testPlainTree()
-    {
-        $before = 'tests/fixtures/beforeTree.json';
-        $after = 'tests/fixtures/afterTree.json';
-        $expected = file_get_contents("tests/fixtures/expectedTreePlain");
-        $this->assertEquals($expected, diff($before, $after, 'plain'));
-    }
-    public function testJson()
-    {
-        $before = 'tests/fixtures/before.json';
-        $after = 'tests/fixtures/after.json';
-        $expected = file_get_contents("tests/fixtures/expectedJson");
-        $this->assertEquals($expected, diff($before, $after, 'json'));
+        $path = 'tests/fixtures/';
+        return [
+            'testPrettyJson' => [$path . 'expectedDiffTree', $path . 'beforeTree.json', $path . 'afterTree.json', 'pretty'],
+            'testJaml' => [$path . 'expectedDiff', $path . 'before.yaml', $path . 'after.yaml', 'pretty'],
+            'testPlainTree' => [$path . 'expectedTreePlain', $path . 'beforeTree.json', $path . 'afterTree.json', 'plain'],
+            'testJson' => [$path . 'expectedJson', $path . 'before.json', $path . 'after.json', 'json']
+            ];
     }
 }
