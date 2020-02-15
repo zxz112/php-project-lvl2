@@ -12,23 +12,23 @@ function makeDiff($beforeData, $afterData)
     }, $ourkeys);
     return $diff;
 }
-function valueDiff($key, $before, $after)
+function valueDiff($key, $beforeValue, $afterValue)
 {
             
-    if (!array_key_exists($key, $before)) {
-        return ['type' => 'added', 'key' => $key, 'value' => $after[$key]];
+    if (!array_key_exists($key, $beforeValue)) {
+        return ['type' => 'added', 'key' => $key, 'value' => $afterValue[$key]];
     }
-    if (!array_key_exists($key, $after)) {
-        return ['type' => 'deleted', 'key' => $key, 'value' => $before[$key]];
+    if (!array_key_exists($key, $afterValue)) {
+        return ['type' => 'deleted', 'key' => $key, 'value' => $beforeValue[$key]];
     }
-    if (is_array($before[$key]) && is_array($after[$key])) {
-        return ['type' => 'parent', 'key' => $key, 'value' => $before[$key],
-        'children' => makeDiff($before[$key], $after[$key])];
+    if (is_array($beforeValue[$key]) && is_array($afterValue[$key])) {
+        return ['type' => 'parent', 'key' => $key, 'value' => $beforeValue[$key],
+        'children' => makeDiff($beforeValue[$key], $afterValue[$key])];
     }
-    if ($before[$key] === $after[$key]) {
-        return ['type' => 'not changed', 'key' => $key, 'value' => $before[$key]];
+    if ($beforeValue[$key] === $afterValue[$key]) {
+        return ['type' => 'not changed', 'key' => $key, 'value' => $beforeValue[$key]];
     }
-    if ($before[$key] !== $after[$key]) {
-        return ['type' => 'changed', 'key' => $key, 'oldValue' => $before[$key], 'newValue' => $after[$key]];
+    if ($beforeValue[$key] !== $afterValue[$key]) {
+        return ['type' => 'changed', 'key' => $key, 'oldValue' => $beforeValue[$key], 'newValue' => $afterValue[$key]];
     }
 }

@@ -12,29 +12,29 @@ function pretty($pretty)
 
 function makePretty($diff, $space = 0)
 {
-    $spaces = str_repeat('    ', $space);
-    $result = array_reduce($diff, function ($acc, $value) use ($spaces, $space) {
+    $countSpace = str_repeat('    ', $space);
+    $result = array_reduce($diff, function ($acc, $value) use ($countSpace, $space) {
         if ($value['type'] == 'deleted') {
             $val = strBuild($value['value'], $space);
-            $acc[] = "{$spaces}  - {$value['key']}: {$val}";
+            $acc[] = "{$countSpace}  - {$value['key']}: {$val}";
         }
         if ($value['type'] == 'added') {
             $val = strBuild($value['value'], $space);
-            $acc[]  = "{$spaces}  + {$value['key']}: {$val}";
+            $acc[]  = "{$countSpace}  + {$value['key']}: {$val}";
         }
         if ($value['type'] == 'not changed') {
             $val = strBuild($value['value'], $space);
-            $acc[] = "{$spaces}    {$value['key']}: {$val}";
+            $acc[] = "{$countSpace}    {$value['key']}: {$val}";
         }
         if ($value['type'] == 'changed') {
             $valOld = strBuild($value['oldValue'], $space);
             $valNew = strBuild($value['newValue'], $space);
-            $acc [] = "{$spaces}  - {$value['key']}: {$valOld}";
-            $acc [] = "{$spaces}  + {$value['key']}: {$valNew}";
+            $acc [] = "{$countSpace}  - {$value['key']}: {$valOld}";
+            $acc [] = "{$countSpace}  + {$value['key']}: {$valNew}";
         }
         if ($value['type'] == 'parent') {
             $child = makePretty($value['children'], $space + 1);
-            $acc [] = "{$spaces}    {$value['key']}: {" . PHP_EOL . "{$child}\n    {$spaces}}";
+            $acc [] = "{$countSpace}    {$value['key']}: {" . PHP_EOL . "{$child}\n    {$countSpace}}";
         }
         return $acc;
     }, []);
@@ -42,15 +42,15 @@ function makePretty($diff, $space = 0)
 }
 function strBuild($value, $space)
 {
-    $spaces = str_repeat('    ', $space + 1);
+    $countSpace = str_repeat('    ', $space + 1);
     if (is_array($value)) {
         $keys = array_keys($value);
-        $values = array_reduce($keys, function ($acc, $val) use ($value, $spaces) {
-            $acc[] = "{$spaces}    {$val}: " . inBool($value[$val]);
+        $values = array_reduce($keys, function ($acc, $val) use ($value, $countSpace) {
+            $acc[] = "{$countSpace}    {$val}: " . inBool($value[$val]);
             return $acc;
         }, []);
         $result = implode(PHP_EOL, $values);
-        return "{\n$result\n{$spaces}}";
+        return "{\n$result\n{$countSpace}}";
     }
     return inBool($value);
 }
