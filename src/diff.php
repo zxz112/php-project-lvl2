@@ -3,10 +3,10 @@
 namespace genDiff\diff;
 
 use function genDiff\parser\parse;
-use function genDiff\pretty\pretty;
+use function genDiff\pretty\toPretty;
 use function genDiff\makeDiff\makeDiff;
-use function genDiff\plain\plain;
-use function genDiff\json\json;
+use function genDiff\plain\toPlain;
+use function genDiff\json\toJson;
 
 function genDiff($beforeFilePath, $afterFilePath, $format)
 {
@@ -21,10 +21,10 @@ function genDiff($beforeFilePath, $afterFilePath, $format)
     $diff = makeDiff($resultBefore, $resultAfter);
     switch ($format) {
         case 'pretty':
-            return pretty($diff);
+            return toPretty($diff);
         case 'plain':
-            return plain($diff);
+            return toPlain($diff);
         case 'json':
-            return json($diff);
+            return toJson($diff);
     }
 }

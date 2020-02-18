@@ -2,7 +2,7 @@
 
 namespace GenDiff\json;
 
-function json($diff)
+function toJson($diff)
 {
     return json_encode(array_values($diff));
 }

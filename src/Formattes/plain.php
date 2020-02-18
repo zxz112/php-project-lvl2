@@ -4,7 +4,7 @@ namespace genDiff\plain;
 
 use function genDiff\inbool\inBool;
 
-function plain($diff, $parent = '')
+function toPlain($diff, $parent = '')
 {
     $plain = array_reduce($diff, function ($acc, $value) use ($parent) {
         if ($value['type'] == 'deleted') {
@@ -21,7 +21,7 @@ function plain($diff, $parent = '')
              . arrayToStr($value['newValue']) . "'";
         }
         if ($value['type'] == 'parent') {
-            $acc [] = plain($value['children'], "{$parent}.{$value['key']}");
+            $acc [] = toPlain($value['children'], "{$parent}.{$value['key']}");
         }
         return $acc;
     }, []);

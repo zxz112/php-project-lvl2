@@ -4,7 +4,7 @@ namespace genDiff\pretty;
 
 use function genDiff\inbool\inBool;
 
-function pretty($pretty)
+function toPretty($pretty)
 {
     $result = makePretty($pretty);
     return "{\n{$result}\n}";

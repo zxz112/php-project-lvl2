@@ -14,11 +14,11 @@
     "autoload": {
         "files": [
             "src/diff.php",
-	        "src/parser.php",
-	        "src/inbool.php",
+	    "src/parser.php",
+	    "src/inbool.php",
             "src/Formattes/pretty.php",
             "src/Formattes/plain.php",
-	        "src/Formattes/json.php",
+	    "src/Formattes/json.php",
             "src/makeDiff.php"
             ]
     },
@@ -35,6 +35,6 @@
     "scripts": {
         "phpcs" : "phpcs",
         "phpcbf" : "phpcbf",
-	    "phpunit": "phpunit"
+	"phpunit": "phpunit"
     }
 }

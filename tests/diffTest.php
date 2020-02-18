@@ -11,10 +11,10 @@ class DiffTest extends TestCase
 /**
  * @dataProvider provider
  */
-    public function testDiff($expected, $beforeFile, $afterFile, $format)
+    public function testDiff($expected, $beforeFilePath, $afterFilePath, $format)
     {
         $expected = trim(file_get_contents($expected));
-        $this->assertSame($expected, genDiff($beforeFile, $afterFile, $format));
+        $this->assertSame($expected, genDiff($beforeFilePath, $afterFilePath, $format));
     }
     public function provider()
     {
