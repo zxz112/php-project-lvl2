@@ -8,9 +8,9 @@ use function genDiff\diff\genDiff;
 
 class DiffTest extends TestCase
 {
-/**
- * @dataProvider provider
- */
+    /**
+     * @dataProvider provider
+     */
     public function testDiff($expected, $beforeFile, $afterFile, $format)
     {
         $expected = trim(file_get_contents($expected));
