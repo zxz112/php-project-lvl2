@@ -8,17 +8,10 @@ use function genDiff\diff\genDiff;
 
 class DiffTest extends TestCase
 {
-<<<<<<< HEAD
 /**
  * @dataProvider provider
  */
     public function testDiff($expected, $beforeFilePath, $afterFilePath, $format)
-=======
-    /**
-     * @dataProvider provider
-     */
-    public function testDiff($expected, $beforeFile, $afterFile, $format)
->>>>>>> bec270906d9f8ea7c538338f565fc41ed7051281
     {
         $expected = trim(file_get_contents($expected));
         $this->assertSame($expected, genDiff($beforeFilePath, $afterFilePath, $format));
